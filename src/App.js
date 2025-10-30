@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import api from "./axiosConfig";
 
@@ -8,7 +8,11 @@ function App() {
   const [message, setMessage] = useState("");
   const [token, setToken] = useState("" || localStorage.getItem("token"));
   //localstorage->웹브라우저에서 기본적으로 가지고있는 저장소(토큰저장소)
-
+  useEffect(() => {
+    if (token) {
+      userloginCheck();
+    }
+  }, []);
   //회원 가입
   const signUp = async (e) => {
     try {
